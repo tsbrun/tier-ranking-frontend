@@ -1,0 +1,29 @@
+.category {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.item {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+}
+
+.item p {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.item-img { 
+    width: 300px;
+    height: 300px;
+}
+
+.item-img img {
+    width: 200px;
+    height: 300px;
+}
