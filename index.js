@@ -57,6 +57,22 @@ function fetchItems() {
 
 function renderItems(item) {
     // clickable image 
+    let itemDiv = document.createElement('div')
+    item.classList.add('item')
+    let img = document.createElement('img')
+    img.src = item.img
+    itemDiv.appendChild(img)
+
     // display name under image
+    let name = document.createElement('p')
+    let text = document.createTextNode(item.name)
+    name.appendChild(text)
+    itemDiv.appendChild(name)
+
     // append to correct div
+    if (item.category == null) {
+        document.querySelector('.null').appendChild(itemDiv)
+    } else {
+        document.querySelector(`.${item.category.title}`).appendChild(itemDiv)
+    }
 }
