@@ -3,7 +3,6 @@ console.log("in index.js") // log to console in order to check connection
 // When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 
 // const api_url = 'http://localhost:3000/api/v1' 
-const main_div = document.querySelector('.main')
 
 // event: page loads
 // fetch: GET items with associated categories (including items w/o categories)
@@ -47,8 +46,8 @@ function renderCategory(category) {
     categoryDiv.classList.add(category.title)
 
     // append to div.main
-    main_div.appendChild(title)
-    main_div.appendChild(categoryDiv)
+    document.querySelector('.main').appendChild(title)
+    document.querySelector('.main').appendChild(categoryDiv)
 }
 
 function fetchItems() {
