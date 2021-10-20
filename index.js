@@ -48,6 +48,7 @@ function renderCategory(category) {
     // div for associated items
     let categoryDiv = document.createElement('div')
     categoryDiv.classList.add(category.title)
+    categoryDiv.classList.add('category')
 
     // append to div.main
     document.querySelector('.main').appendChild(categoryDiv)
