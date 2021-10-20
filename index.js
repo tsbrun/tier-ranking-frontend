@@ -5,7 +5,7 @@ console.log("in index.js") // log to console in order to check connection
 // const api_url = 'http://localhost:3000/api/v1'
 
 // event: page loads
-// fetch: GET categories
+// fetch: GET categories and associated items
 // DOM: list categories and append items to respective divs
 
 document.addEventListener('DOMContentLoaded', () => {
