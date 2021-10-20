@@ -62,7 +62,7 @@ function fetchItems() {
 function renderItem(item) {
     // clickable image 
     let itemDiv = document.createElement('div')
-    item.classList.add('item')
+    itemDiv.classList.add('item')
     let img = document.createElement('img')
     img.src = item.img
     itemDiv.appendChild(img)
