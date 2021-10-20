@@ -46,8 +46,8 @@ function renderCategory(category) {
     categoryDiv.classList.add(category.title)
 
     // append to div.main
-    document.querySelector('.main').appendChild(title)
     document.querySelector('.main').appendChild(categoryDiv)
+    document.querySelector('.main').insertBefore(title, categoryDiv)
 }
 
 function fetchItems() {
