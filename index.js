@@ -60,12 +60,17 @@ function fetchItems() {
 }
 
 function renderItem(item) {
-    // image 
+    // item and image divs
     let itemDiv = document.createElement('div')
     itemDiv.classList.add('item')
+    
+    let itemImg = document.createElement('div')
+    itemImg.classList.add('item-img')
+
+    // display image
     let img = document.createElement('img')
     img.src = item.img
-    itemDiv.appendChild(img)
+    img.appendChild(itemImg)
 
     // display name under image
     let name = document.createElement('p')
