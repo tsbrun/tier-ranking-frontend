@@ -54,3 +54,9 @@ function fetchItems() {
     return fetch(`${api_url}/items`)
     .then(resp => resp.json())
 }
+
+function renderItems(item) {
+    // clickable image 
+    // display name under image
+    // append to correct div
+}
