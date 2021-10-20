@@ -26,7 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // append to div where class == item.category.name
     // if category == false, append to div.uncategorized
     fetchItems()
-    .then(items => console.log(items))
+    .then(items => {
+        items.data.forEach(item => {
+            renderItem(item)
+        })
+    })
     .catch(err => console.log(err))
 })
 
@@ -55,7 +59,7 @@ function fetchItems() {
     .then(resp => resp.json())
 }
 
-function renderItems(item) {
+function renderItem(item) {
     // clickable image 
     let itemDiv = document.createElement('div')
     item.classList.add('item')
