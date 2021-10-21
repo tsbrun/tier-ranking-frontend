@@ -20,6 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.log(err))
 })
 
+// CATEGORY CLASS
+
+class Category {
+    constructor(title) {
+        this.title = title
+    }
+}
+
 // FETCH AND RENDER CATEGORIES
 
 function fetchCategories() {
