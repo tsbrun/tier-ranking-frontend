@@ -85,5 +85,13 @@ function createFormHandler(e) {
         data[`${pair[0]}`] = `${pair[1]}`
     }
 
-
+    // post data to server
+    fetch(`${api_url}/categories`, {
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
 }
