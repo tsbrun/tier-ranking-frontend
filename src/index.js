@@ -14,15 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchItems()
     .then(items => {
-        items.data.forEach(item => {
-            const newItem = new Item(item)
-
-            if (newItem.category == null) {
-                document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
-            } else {
-                document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
-            }
-        })
+        displayItems(items)
     })
     .catch(err => console.log(err))
 })
@@ -43,6 +35,18 @@ function displayCategories(categories) {
 function fetchItems() {
     return fetch(`${api_url}/items`)
     .then(resp => resp.json())
+}
+
+function displayItems(items) {
+    items.data.forEach(item => {
+        const newItem = new Item(item)
+
+        if (newItem.category == null) {
+            document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
+        } else {
+            document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
+        }
+    })
 }
 
 function hideEmptyUncategorized() {
