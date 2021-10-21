@@ -103,3 +103,22 @@ function createCategoryHandler(e) {
         body: JSON.stringify(data)
     })
 }
+
+function createItemHandler(e) {
+    e.preventDefault()
+
+    const itemFormData = new FormData(e.target)
+    let data = { "item": {} }
+    for (var pair of itemFormData.entries()) {
+        data["item"][`${pair[0]}`] = `${pair[1]}`
+    }
+
+    fetch(`${api_url}/items`, {
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
