@@ -3,28 +3,30 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // fetch categories and items
+    // hideEmptyUncategorized()
 
-    hideEmptyUncategorized()
+    // fetchCategories()
+    // .then(categories => {
+    //     displayCategories(categories)
+    //     appendCategoriesToForm()
+    // })
+    // .catch(err => console.log(err))
 
-    fetchCategories()
-    .then(categories => {
-        displayCategories(categories)
-    })
-    .catch(err => console.log(err))
+    // showUncategorized()
 
-    showUncategorized()
-
-    fetchItems()
-    .then(items => {
-        displayItems(items)
-    })
-    .catch(err => console.log(err))
+    // fetchItems()
+    // .then(items => {
+    //     displayItems(items)
+    // })
+    // .catch(err => console.log(err))
 
     // post new category data to server
-
     const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => createFormHandler(e))
+    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
+
+    // post new item data to server
+    const createItemForm = document.querySelector("#create-item-form")
+    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
 
 function fetchCategories() {
@@ -37,6 +39,20 @@ function displayCategories(categories) {
         const newCategory = new Category(category)
 
         document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
+    })
+}
+
+function appendCategoriesToForm(categories) {
+    // add category options to create-item-form
+    Category.all.forEach(category => {
+        const option = document.createElement('option')
+        option.value = category.id 
+        option.appendChild(document.createTextNode(category.title))
+
+        const categorySelect = document.querySelector('select#category')
+        categorySelect.appendChild(option)
+
+        console.log(categorySelect)
     })
 }
 
@@ -67,7 +83,7 @@ function showUncategorized() {
     uncategorized.style.display = "block"
 }
 
-function createFormHandler(e) {
+function createCategoryHandler(e) {
     e.preventDefault()
 
     // get category data from form
@@ -78,7 +94,7 @@ function createFormHandler(e) {
     }
 
     // post data to server
-    fetch(`${api_url}/categories`, {
+    fetch(`http://localhost:3000/api/v1/categories`, {
         method: 'POST', 
         mode: 'cors',
         headers: {
@@ -86,4 +102,33 @@ function createFormHandler(e) {
         },
         body: JSON.stringify(data)
     })
+}
+
+function createItemHandler(e) {
+    e.preventDefault()
+
+    const itemFormData = new FormData(e.target)
+    let data = { "item": {} }
+
+    data["item"]["name"] = itemFormData.get("name")
+    data["item"]["img"] = itemFormData.get("img")
+    data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(itemFormData.get("category")))
+
+    fetch(`http://localhost:3000/api/v1/items`, {
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+}
+
+function findCategoryById(categories, key, value) {
+    for (var i = 0; i < categories.length; i++) {
+        if (categories[i][key] === value) {
+            return categories[i];
+        }
+    }
+    return null;
 }
