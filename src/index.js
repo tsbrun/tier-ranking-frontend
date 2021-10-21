@@ -25,8 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const createCategoryForm = document.querySelector("#create-category-form")
     createCategoryForm.addEventListener("submit", (e) => {
-        e.preventDefault()
-        console.log(e)
+        createFormHandler(e)
     })
 })
 
@@ -74,4 +73,9 @@ function hideEmptyUncategorized() {
 function showUncategorized() {
     const uncategorized = document.querySelector('div[data-category=null]')
     uncategorized.style.display = "block"
+}
+
+function createFormHandler(e) {
+    e.preventDefault()
+    console.log(e)
 }
