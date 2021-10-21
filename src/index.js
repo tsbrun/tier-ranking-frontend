@@ -114,7 +114,7 @@ function createItemHandler(e) {
     // }
     data["item"]["name"] = itemFormData.get("name")
     data["item"]["img"] = itemFormData.get("img")
-    data["item"]["category"] = findCategoryById(Category.all, "id", itemFormData.get("category"))
+    data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(itemFormData.get("category")))
 
     fetch(`http://localhost:3000/api/v1/items`, {
         method: 'POST', 
@@ -129,8 +129,10 @@ function createItemHandler(e) {
 function findCategoryById(categories, key, value) {
     for (var i = 0; i < categories.length; i++) {
         if (categories[i][key] === value) {
-            return array[i];
+            return categories[i];
         }
     }
     return null;
 }
+
+// Animals category.id is 4
