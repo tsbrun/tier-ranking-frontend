@@ -3,22 +3,22 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // hideEmptyUncategorized()
+    hideEmptyUncategorized()
 
-    // fetchCategories()
-    // .then(categories => {
-    //     displayCategories(categories)
-    //     appendCategoriesToForm()
-    // })
-    // .catch(err => console.log(err))
+    fetchCategories()
+    .then(categories => {
+        displayCategories(categories)
+        appendCategoriesToForm()
+    })
+    .catch(err => console.log(err))
 
-    // showUncategorized()
+    showUncategorized()
 
-    // fetchItems()
-    // .then(items => {
-    //     displayItems(items)
-    // })
-    // .catch(err => console.log(err))
+    fetchItems()
+    .then(items => {
+        displayItems(items)
+    })
+    .catch(err => console.log(err))
 
     // post new category data to server
     const createCategoryForm = document.querySelector("#create-category-form")
