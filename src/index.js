@@ -109,9 +109,7 @@ function createItemHandler(e) {
 
     const itemFormData = new FormData(e.target)
     let data = { "item": {} }
-    // for (var pair of itemFormData.entries()) {
-    //     data["item"][`${pair[0]}`] = `${pair[1]}`
-    // }
+
     data["item"]["name"] = itemFormData.get("name")
     data["item"]["img"] = itemFormData.get("img")
     data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(itemFormData.get("category")))
@@ -134,5 +132,3 @@ function findCategoryById(categories, key, value) {
     }
     return null;
 }
-
-// Animals category.id is 4
