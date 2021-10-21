@@ -1,7 +1,7 @@
-console.log("category.js linked to index.html")
-
 class Category {
-    constructor(title) {
+    constructor(id, title) {
+        this.id = id
         this.title = title
+        Category.all.push(this) // push all instances of Category into an array
     }
 }
