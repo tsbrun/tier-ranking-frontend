@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchItems()
     .then(items => {
         items.data.forEach(item => {
-            renderItem(item)
+            const newItem = new Item(item)
+
+            document.querySelector('.main').appendChild(newItem.renderItemDiv())
         })
     })
     .catch(err => console.log(err))
