@@ -1,7 +1,7 @@
 class Category {
-    constructor(c) {
-        this.id = c.id
-        this.title = c.title
+    constructor(data) {
+        this.id = data.id
+        this.title = data.title
         Category.all.push(this) // push all instances of Category into an array
     }
 
