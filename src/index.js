@@ -3,6 +3,8 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
+    hideEmptyUncategorized()
+
     fetchCategories()
     .then(categories => {
         categories.data.forEach(category => {
@@ -13,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.log(err))
 
+    showUncategorized()
+
     fetchItems()
     .then(items => {
         items.data.forEach(item => {
@@ -21,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.log(err))
 })
-
-// FETCH CATEGORIES
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
@@ -62,4 +64,14 @@ function renderItem(item) {
     } else {
         document.querySelector(`div[data-category=${item.category.title}] > div.items`).appendChild(itemDiv)
     }
+}
+
+function hideEmptyUncategorized() {
+    const uncategorized = document.querySelector('div[data-category=null]')
+    uncategorized.style.display = "none"
+}
+
+function showUncategorized() {
+    const uncategorized = document.querySelector('div[data-category=null]')
+    uncategorized.style.display = "block"
 }
