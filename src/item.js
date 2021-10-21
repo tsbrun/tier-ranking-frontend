@@ -19,22 +19,22 @@ class Item {
     
         // display image
         let img = document.createElement('img')
-        img.src = item.img
+        img.src = this.img
         itemImg.appendChild(img)
     
         // display name under image
         let name = document.createElement('p')
-        let text = document.createTextNode(item.name)
+        let text = document.createTextNode(this.name)
         name.appendChild(text)
         itemDiv.appendChild(name)
 
         // return div
     
         // append to correct div
-        if (item.category == null) {
+        if (this.category == null) {
             document.querySelector('div[data-category=null] > div.items').appendChild(itemDiv)
         } else {
-            document.querySelector(`div[data-category=${item.category.title}] > div.items`).appendChild(itemDiv)
+            document.querySelector(`div[data-category=${this.category.title}] > div.items`).appendChild(itemDiv)
         }
     }
 }
