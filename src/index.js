@@ -7,13 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchCategories()
     .then(categories => {
-        categories.data.forEach(category => {
-            const newCategory = new Category(category)
-
-            document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
-        })
+        displayCategories(categories)
     })
-    .catch(err => console.log(err))
 
     showUncategorized()
 
@@ -35,6 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
     .then(resp => resp.json())
+}
+
+function displayCategories(categories) {
+    categories.data.forEach(category => {
+        const newCategory = new Category(category)
+
+        document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
+    })
 }
 
 function fetchItems() {
