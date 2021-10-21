@@ -3,6 +3,8 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
+    // fetch categories and items
+
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -18,7 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
         displayItems(items)
     })
     .catch(err => console.log(err))
+
+    // post new category data to server
+
+    const createCategoryForm = document.querySelector("#create-category-form")
+    createCategoryForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        console.log(e)
+    })
 })
+
+// event: click on Create New Category
+    // event listener on Create New Category
+// fetch: POST 
+    // fetch(`api_url/categories`) -> how to specify POST?
+// DOM: display new category -> we already have a function for that
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
