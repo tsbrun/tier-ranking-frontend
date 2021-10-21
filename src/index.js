@@ -22,7 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         items.data.forEach(item => {
             const newItem = new Item(item)
 
-            document.querySelector('.main').appendChild(newItem.renderItemDiv())
+            if (newItem.category == null) {
+                document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
+            } else {
+                document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
+            }
         })
     })
     .catch(err => console.log(err))

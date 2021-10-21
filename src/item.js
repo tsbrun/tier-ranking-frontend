@@ -28,14 +28,7 @@ class Item {
         name.appendChild(text)
         itemDiv.appendChild(name)
 
-        // return div
-    
-        // append to correct div
-        if (this.category == null) {
-            document.querySelector('div[data-category=null] > div.items').appendChild(itemDiv)
-        } else {
-            document.querySelector(`div[data-category=${this.category.title}] > div.items`).appendChild(itemDiv)
-        }
+        return itemDiv
     }
 }
 
