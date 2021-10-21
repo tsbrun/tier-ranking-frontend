@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(categories => {
         displayCategories(categories)
     })
+    .catch(err => console.log(err))
 
     showUncategorized()
 
