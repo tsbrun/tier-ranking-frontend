@@ -5,21 +5,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     // fetch categories and items
 
-    hideEmptyUncategorized()
+    // hideEmptyUncategorized()
 
-    fetchCategories()
-    .then(categories => {
-        displayCategories(categories)
-    })
-    .catch(err => console.log(err))
+    // fetchCategories()
+    // .then(categories => {
+    //     displayCategories(categories)
+    // })
+    // .catch(err => console.log(err))
 
-    showUncategorized()
+    // showUncategorized()
 
-    fetchItems()
-    .then(items => {
-        displayItems(items)
-    })
-    .catch(err => console.log(err))
+    // fetchItems()
+    // .then(items => {
+    //     displayItems(items)
+    // })
+    // .catch(err => console.log(err))
 
     // post new category data to server
 
@@ -77,5 +77,13 @@ function showUncategorized() {
 
 function createFormHandler(e) {
     e.preventDefault()
-    console.log(e)
+
+    // get category data from form
+    const categoryFormData = new FormData(e.target)
+    let data = {}
+    for (var pair of categoryFormData.entries()) {
+        data[`${pair[0]}`] = `${pair[1]}`
+    }
+
+
 }
