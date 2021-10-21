@@ -1,6 +1,6 @@
 // JS MANTRA: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 
-const api_url = 'http://localhost:3000/api/v1' 
+// const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCategories()
@@ -19,14 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => console.log(err))
 })
-
-// CATEGORY CLASS
-
-class Category {
-    constructor(title) {
-        this.title = title
-    }
-}
 
 // FETCH AND RENDER CATEGORIES
 
