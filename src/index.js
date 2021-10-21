@@ -5,21 +5,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     // fetch categories and items
 
-    // hideEmptyUncategorized()
+    hideEmptyUncategorized()
 
-    // fetchCategories()
-    // .then(categories => {
-    //     displayCategories(categories)
-    // })
-    // .catch(err => console.log(err))
+    fetchCategories()
+    .then(categories => {
+        displayCategories(categories)
+    })
+    .catch(err => console.log(err))
 
-    // showUncategorized()
+    showUncategorized()
 
-    // fetchItems()
-    // .then(items => {
-    //     displayItems(items)
-    // })
-    // .catch(err => console.log(err))
+    fetchItems()
+    .then(items => {
+        displayItems(items)
+    })
+    .catch(err => console.log(err))
 
     // post new category data to server
 
