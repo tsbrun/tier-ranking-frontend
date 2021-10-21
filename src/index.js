@@ -24,16 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // post new category data to server
 
     const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => {
-        createFormHandler(e)
-    })
+    createCategoryForm.addEventListener("submit", (e) => createFormHandler(e))
 })
-
-// event: click on Create New Category
-    // event listener on Create New Category
-// fetch: POST 
-    // fetch(`api_url/categories`) -> how to specify POST?
-// DOM: display new category -> we already have a function for that
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
@@ -80,9 +72,9 @@ function createFormHandler(e) {
 
     // get category data from form
     const categoryFormData = new FormData(e.target)
-    let data = {}
+    let data = { "category": {} }
     for (var pair of categoryFormData.entries()) {
-        data[`${pair[0]}`] = `${pair[1]}`
+        data["category"][`${pair[0]}`] = `${pair[1]}`
     }
 
     // post data to server
