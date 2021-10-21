@@ -21,3 +21,5 @@ class Category {
         document.querySelector('.main').insertBefore(title, categoryDiv)
     }
 }
+
+Category.all = [] // empty array for instances of Category
