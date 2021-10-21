@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // post new category data to server
     const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => createFormHandler(e))
+    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
 
     // post new item data to server
     const createItemForm = document.querySelector("#create-item-form")
@@ -83,7 +83,7 @@ function showUncategorized() {
     uncategorized.style.display = "block"
 }
 
-function createFormHandler(e) {
+function createCategoryHandler(e) {
     e.preventDefault()
 
     // get category data from form
