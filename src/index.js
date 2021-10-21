@@ -3,8 +3,6 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // fetch categories and items
-
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -23,9 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.log(err))
 
     // post new category data to server
-
     const createCategoryForm = document.querySelector("#create-category-form")
     createCategoryForm.addEventListener("submit", (e) => createFormHandler(e))
+
+    // post new item data to server
+    const createItemForm = document.querySelector("#create-item-form")
+    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
 
 function fetchCategories() {
