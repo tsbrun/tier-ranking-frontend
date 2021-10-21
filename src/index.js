@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCategories()
     .then(categories => {
         categories.data.forEach(category => {
-            renderCategory(category)
+            const newCategory = new Category(category)
+            newCategory.renderCategoryDiv()
         })
     })
     .catch(err => console.log(err))
@@ -20,27 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.log(err))
 })
 
-// FETCH AND RENDER CATEGORIES
+// FETCH CATEGORIES
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
     .then(resp => resp.json())
-}
-
-function renderCategory(category) {
-    // title heading
-    let title = document.createElement('h2')
-    let text = document.createTextNode(category.title)
-    title.appendChild(text)
-
-    // div for associated items
-    let categoryDiv = document.createElement('div')
-    categoryDiv.classList.add(category.title)
-    categoryDiv.classList.add('category')
-
-    // append to div.main
-    document.querySelector('.main').appendChild(categoryDiv)
-    document.querySelector('.main').insertBefore(title, categoryDiv)
 }
 
 // FETCH AND RENDER ITEMS
