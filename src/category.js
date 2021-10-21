@@ -13,7 +13,7 @@ class Category {
 
         // div for associated items
         let categoryDiv = document.createElement('div')
-        categoryDiv.classList.add(this.title)
+        categoryDiv.dataset.category = this.title
         categoryDiv.classList.add('category')
 
         // append to div.main
