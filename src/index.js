@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchCategories()
     .then(categories => {
         displayCategories(categories)
+        appendCategoriesToForm()
     })
     .catch(err => console.log(err))
 
@@ -37,6 +38,20 @@ function displayCategories(categories) {
         const newCategory = new Category(category)
 
         document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
+    })
+}
+
+function appendCategoriesToForm(categories) {
+    // add category options to create-item-form
+    Category.all.forEach(category => {
+        const option = document.createElement('option')
+        option.value = category.title 
+        option.appendChild(document.createTextNode(category.title))
+
+        const categorySelect = document.querySelector('select#category')
+        categorySelect.appendChild(option)
+
+        console.log(categorySelect)
     })
 }
 
