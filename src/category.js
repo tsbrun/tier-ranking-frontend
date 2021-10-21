@@ -16,8 +16,12 @@ class Category {
         let text = document.createTextNode(this.title)
         title.appendChild(text)
 
-        // append heading to div
+        // create items div
+        let items = document.createElement('div')
+        items.classList.add('items')
+
         div.appendChild(title)
+        div.appendChild(items)
 
         return div
     }

@@ -58,8 +58,8 @@ function renderItem(item) {
 
     // append to correct div
     if (item.category == null) {
-        document.querySelector('div[data-category=null]').appendChild(itemDiv)
+        document.querySelector('div[data-category=null] > div.items').appendChild(itemDiv)
     } else {
-        document.querySelector(`div[data-category=${item.category.title}]`).appendChild(itemDiv)
+        document.querySelector(`div[data-category=${item.category.title}] > div.items`).appendChild(itemDiv)
     }
 }
