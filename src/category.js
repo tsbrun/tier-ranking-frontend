@@ -6,19 +6,20 @@ class Category {
     }
 
     renderCategoryDiv() {
-        // title heading
+        // create category div
+        let div = document.createElement('div')
+        div.dataset.category = this.title 
+        div.classList.add('category')
+
+        // create category heading
         let title = document.createElement('h2')
         let text = document.createTextNode(this.title)
         title.appendChild(text)
 
-        // div for associated items
-        let categoryDiv = document.createElement('div')
-        categoryDiv.dataset.category = this.title
-        categoryDiv.classList.add('category')
+        // append heading to div
+        div.appendChild(title)
 
-        // append to div.main
-        document.querySelector('.main').appendChild(categoryDiv)
-        document.querySelector('.main').insertBefore(title, categoryDiv)
+        return div
     }
 }
 

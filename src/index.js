@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(categories => {
         categories.data.forEach(category => {
             const newCategory = new Category(category)
-            newCategory.renderCategoryDiv()
+
+            document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
         })
     })
     .catch(err => console.log(err))
