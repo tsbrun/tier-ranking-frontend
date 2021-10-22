@@ -4,11 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // hide tier-ranking div until tier-ranking button is clicked
-    hideTierRanking()
+    // hideTierRanking()
 
-    document.querySelector('#tier-ranking-button').addEventListener("click", () => {
-        showTierRanking()
-    })
+    // document.querySelector('#tier-ranking-button').addEventListener("click", () => {
+    //     showTierRanking()
+    // })
 
     // display the rest of the page 
     hideEmptyUncategorized()
