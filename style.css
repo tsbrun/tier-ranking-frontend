@@ -1,3 +1,5 @@
+/* form styles */
+
 .form-container {
     display: flex;
     justify-content: space-evenly;
@@ -9,6 +11,8 @@
     text-align: center;
     flex-grow: 1;
 }
+
+/* category and item styles */
 
 .items {
     display: flex;
@@ -38,4 +42,16 @@
 .item-img img {
     width: 200px;
     height: 300px;
+}
+
+/* tier-ranking styles */
+
+.tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #333;
+    opacity: .5;
+    padding: 1rem;
+    margin-top: 1rem;
 }
