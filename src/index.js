@@ -3,6 +3,14 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
+    // hide tier-ranking div until tier-ranking button is clicked
+    hideTierRanking()
+
+    document.querySelector('#tier-ranking-button').addEventListener("click", () => {
+        showTierRanking()
+    })
+
+    // display the rest of the page 
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -131,4 +139,14 @@ function findCategoryById(categories, key, value) {
         }
     }
     return null;
+}
+
+function hideTierRanking() {
+    const tierRanking = document.querySelector('div.tier-ranking')
+    tierRanking.style.display = "none"
+}
+
+function showTierRanking() {
+    const tierRanking = document.querySelector('div.tier-ranking')
+    tierRanking.style.display = "block"
 }
