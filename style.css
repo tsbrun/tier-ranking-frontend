@@ -50,14 +50,48 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    background-color: #333;
-    opacity: .5;
-    padding: 1rem;
+    background-color: #d7d9db;
+    padding: 0;
     margin-top: 1rem;
+}
+
+.tier-heading {
+    /* as a child of .tier */
+    order: 1; 
+    flex-basis: 5rem;
+
+    display: flex;
+    justify-content: center;
+
+    width: 80px;
 }
 
 .tier-heading p {
     color: black;
     font-weight: bold;
     font-size: 18px;
+}
+
+.s-tier {
+    background-color: #ff4000;
+}
+
+.a-tier {
+    background-color: #ff8000;
+}
+
+.b-tier {
+    background-color: #ffc61a;
+}
+
+.c-tier {
+    background-color: #ffff00;
+}
+
+.d-tier {
+    background-color: #bfff00;
+}
+
+.f-tier {
+    background-color: #40ff00;
 }
