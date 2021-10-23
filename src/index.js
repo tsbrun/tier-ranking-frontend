@@ -3,6 +3,47 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
+    // hide tier-ranking div until tier-ranking button is clicked
+    hideTierRanking()
+
+    const tierRankingButton = document.querySelector('#tier-ranking-button')
+
+    tierRankingButton.addEventListener("click", () => {
+        showTierRanking()
+
+        tierRankingButton.innerText = "Save Ranking"
+
+        addItemsToTierRanking()
+
+        const draggables = document.querySelectorAll('.draggable')
+        setDraggableEventListeners(draggables)
+
+        const tiers = document.querySelectorAll('.tier')
+        setTierEventListeners(tiers)
+
+        tierRankingButton.addEventListener("click", () => {
+            tierRankingButton.innerText = "Tier Ranking"
+
+            // change ranking of items based on tier
+            rankItems()
+
+            hideTierRanking()
+        })
+    })
+
+    // display the rest of the page 
+    loadPage()
+
+    // post new category data to server
+    const createCategoryForm = document.querySelector("#create-category-form")
+    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
+
+    // post new item data to server
+    const createItemForm = document.querySelector("#create-item-form")
+    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
+})
+
+function loadPage() {
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -19,15 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         displayItems(items)
     })
     .catch(err => console.log(err))
+}
 
-    // post new category data to server
-    const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
-
-    // post new item data to server
-    const createItemForm = document.querySelector("#create-item-form")
-    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
-})
+// fetch, create, and display functions
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
@@ -131,4 +166,138 @@ function findCategoryById(categories, key, value) {
         }
     }
     return null;
+}
+
+function findItemByName(items, key, value) {
+    // items = Item.all
+    // key = "name"
+    // value = item.innerText
+    for (var i = 0; i < items.length; i++) {
+        if (items[i][key] === value) {
+            return items[i]
+        }
+    } 
+    return null
+}
+
+function hideTierRanking() {
+    const tierRanking = document.querySelector('div.tier-ranking')
+    tierRanking.style.display = "none"
+}
+
+function showTierRanking() {
+    const tierRanking = document.querySelector('div.tier-ranking')
+    tierRanking.style.display = "block"
+}
+
+// tier-ranking functions
+
+function addItemsToTierRanking() {
+    const items = Item.all 
+
+    items.forEach(item => {
+        const draggableItem = item.renderItemDiv()
+        draggableItem.classList.add('draggable')
+
+        document.querySelector('div.tier-items').appendChild(draggableItem)
+    })
+}
+
+function setDraggableEventListeners(draggables) {
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging')
+        })
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('dragging')
+        })
+    })
+}
+
+function setTierEventListeners(tiers) {
+    tiers.forEach(tier => {
+        tier.addEventListener('dragover', e => {
+            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
+            const afterElement = getDragAfterElement(tier, e.clientY)
+            const draggable = document.querySelector('.dragging')
+
+            if (afterElement == null) {
+                tier.appendChild(draggable)
+            } else {
+                tier.insertBefore(draggable, afterElement) 
+            }
+        })
+    })
+}
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging')]
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = y - box.top - box.height / 2
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child }
+        } else {
+            return closest
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element
+}
+
+function rankItems() {
+    const items = document.querySelectorAll('div.item')
+    items.forEach(item => {
+        let itemData = findItemByName(Item.all, "name", item.innerText)
+        const id = itemData.id
+        const data = { "item": {} }
+        data["item"]["rank"] = 0
+
+        switch (item.parentElement.classList[1]) {
+            case 's-tier':
+                // classInstance.rank = 6
+                data["item"]["rank"] = 6
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            case 'a-tier':
+                // classInstance.rank = 5
+                data["item"]["rank"] = 5
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            case 'b-tier':
+                // classInstance.rank = 4
+                data["item"]["rank"] = 4
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            case 'c-tier':
+                // classInstance.rank = 3
+                data["item"]["rank"] = 3
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            case 'd-tier':
+                // classInstance.rank = 2
+                data["item"]["rank"] = 2
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            case 'f-tier':
+                // classInstance.rank = 1
+                data["item"]["rank"] = 1
+                patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
+                break;
+            default: 
+                console.log("Rank remains unchanged...")
+        }
+    })
+}
+
+function patchDataToApi(route, data) { 
+    fetch(route, {
+        method: 'PATCH', 
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
 }

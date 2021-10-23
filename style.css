@@ -1,3 +1,5 @@
+/* form styles */
+
 .form-container {
     display: flex;
     justify-content: space-evenly;
@@ -10,6 +12,8 @@
     flex-grow: 1;
 }
 
+/* category and item styles */
+
 .items {
     display: flex;
     justify-content: flex-start;
@@ -18,10 +22,14 @@
 
 .item {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    width: 100px;
+    height: 150px;
+    margin: 1rem;
     text-align: center;
     font-family: arial;
+
+    /* as child of .tier */
+    order: 2;
 }
 
 .item p {
@@ -31,11 +39,70 @@
 }
 
 .item-img { 
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 150px;
 }
 
 .item-img img {
-    width: 200px;
-    height: 300px;
+    width: 100px;
+    height: 150px;
+}
+
+/* tier-ranking styles */
+
+.tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #d7d9db;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.tier-heading {
+    /* as a child of .tier */
+    order: 1; 
+    flex-basis: 5rem;
+
+    display: flex;
+    justify-content: center;
+}
+
+.tier-heading p {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.tier-heading.s-tier {
+    background-color: #ff4000;
+}
+
+.tier-heading.a-tier {
+    background-color: #ff8000;
+}
+
+.tier-heading.b-tier {
+    background-color: #ffc61a;
+}
+
+.tier-heading.c-tier {
+    background-color: #ffff00;
+}
+
+.tier-heading.d-tier {
+    background-color: #bfff00;
+}
+
+.tier-heading.f-tier {
+    background-color: #40ff00;
+}
+
+.tier-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #d7d9db;
+    padding: 2rem;
+    margin-top: 1rem;
 }
