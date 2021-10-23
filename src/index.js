@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const valerianData = { "id": 3, "name": "Valerian", "img": "https://upload.wikimedia.org/wikipedia/en/0/07/Valerian_and_the_City_of_a_Thousand_Planets.jpg", "rank": 0, "category": Category.all[0] }
         const valerian = new Item(valerianData)
 
+
+    const draggables = document.querySelectorAll('.draggable')
+    const tiers = document.querySelectorAll('.tier')
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging')
+        })
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('dragging')
+        })
+    })
+
     // display the rest of the page 
     hideEmptyUncategorized()
 
@@ -50,12 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
     createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
 
-// add items to tier-items container
+// tier-ranking functions
+
 function addItemsToTierRanking() {
     const items = Item.all 
+
     items.forEach(item => {
         const draggableItem = item.renderItemDiv()
         draggableItem.classList.add('draggable')
+
         document.querySelector('div.tier-items').appendChild(draggableItem)
     })
 }
