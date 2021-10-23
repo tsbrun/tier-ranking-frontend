@@ -31,8 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
-        // seed data to test tier-ranking feature
-
     // display the rest of the page 
     loadPage()
 
@@ -251,37 +249,39 @@ function getDragAfterElement(container, y) {
 function rankItems() {
     const items = document.querySelectorAll('div.item')
     items.forEach(item => {
-        const data = formatItemForApi(item)
+        const data = { "item": {} }
+        data["item"]["rank"] = 0
+
         switch (item.parentElement.classList[1]) {
             case 's-tier':
                 // classInstance.rank = 6
                 data["item"]["rank"] = 6
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'a-tier':
                 // classInstance.rank = 5
                 data["item"]["rank"] = 5
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'b-tier':
                 // classInstance.rank = 4
                 data["item"]["rank"] = 4
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'c-tier':
                 // classInstance.rank = 3
                 data["item"]["rank"] = 3
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'd-tier':
                 // classInstance.rank = 2
                 data["item"]["rank"] = 2
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'f-tier':
                 // classInstance.rank = 1
                 data["item"]["rank"] = 1
-                putDataToApi("http://localhost:3000/api/v1/items", data)
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             default: 
                 console.log("Rank remains unchanged...")
@@ -289,20 +289,9 @@ function rankItems() {
     })
 }
 
-function formatItemForApi(item) {
-    let data = { "item": {} }
-
-    data["item"]["name"] = item.get("name")
-    data["item"]["img"] = item.get("img")
-    data["item"]["rank"] = 0
-    data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(item.get("category")))
-
-    return data
-}
-
-function putDataToApi(route, data) { 
+function patchDataToApi(route, data) { 
     fetch(route, {
-        method: 'PUT', 
+        method: 'PATCH', 
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
