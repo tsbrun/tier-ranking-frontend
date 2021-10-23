@@ -4,13 +4,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // hide tier-ranking div until tier-ranking button is clicked
-    // hideTierRanking()
+    hideTierRanking()
 
-    // document.querySelector('#tier-ranking-button').addEventListener("click", () => {
-    //     showTierRanking()
-    // })
+    document.querySelector('#tier-ranking-button').addEventListener("click", () => {
+        showTierRanking()
 
-    // seed data to test tier-ranking feature
+        // add items to tier-items container
+        addItemsToTierRanking()
+    })
+
+        // seed data to test tier-ranking feature
         const moviesData = { "id": 1, "title": "Movies" }
         const newCategory = new Category(moviesData)
         const hungerGamesData = { "id": 1, "name": "The Hunger Games", "img": "https://images-na.ssl-images-amazon.com/images/I/71WSzS6zvCL.jpg", "rank": 0, "category": Category.all[0] }
@@ -19,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const dune = new Item(duneData)
         const valerianData = { "id": 3, "name": "Valerian", "img": "https://upload.wikimedia.org/wikipedia/en/0/07/Valerian_and_the_City_of_a_Thousand_Planets.jpg", "rank": 0, "category": Category.all[0] }
         const valerian = new Item(valerianData)
-
-        // add items to tier-items container
-        addItemsToTierRanking()
 
     // display the rest of the page 
     hideEmptyUncategorized()
