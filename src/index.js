@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // add items to tier-items container
         addItemsToTierRanking()
+
+        const draggables = document.querySelectorAll('.draggable')
+        setDraggableEventListeners(draggables)
+
+        const tiers = document.querySelectorAll('.tier')
+        setTierEventListeners(tiers)
     })
 
         // seed data to test tier-ranking feature
@@ -22,34 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const dune = new Item(duneData)
         const valerianData = { "id": 3, "name": "Valerian", "img": "https://upload.wikimedia.org/wikipedia/en/0/07/Valerian_and_the_City_of_a_Thousand_Planets.jpg", "rank": 0, "category": Category.all[0] }
         const valerian = new Item(valerianData)
-
-
-    const draggables = document.querySelectorAll('.draggable')
-    const tiers = document.querySelectorAll('.tier')
-
-    draggables.forEach(draggable => {
-        draggable.addEventListener('dragstart', () => {
-            draggable.classList.add('dragging')
-        })
-
-        draggable.addEventListener('dragend', () => {
-            draggable.classList.remove('dragging')
-        })
-    })
-
-    tiers.forEach(tier => {
-        tier.addEventListener('dragover', e => {
-            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
-            const afterElement = getDragAfterElement(tier, e.clientY)
-            const draggable = document.querySelector('.dragging')
-
-            if (afterElement == null) {
-                tier.appendChild(draggable)
-            } else {
-                tier.insertBefore(draggable, afterElement) 
-            }
-        })
-    })
 
     // display the rest of the page 
     hideEmptyUncategorized()
@@ -88,6 +66,34 @@ function addItemsToTierRanking() {
         draggableItem.classList.add('draggable')
 
         document.querySelector('div.tier-items').appendChild(draggableItem)
+    })
+}
+
+function setDraggableEventListeners(draggables) {
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging')
+        })
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('dragging')
+        })
+    })
+}
+
+function setTierEventListeners(tiers) {
+    tiers.forEach(tier => {
+        tier.addEventListener('dragover', e => {
+            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
+            const afterElement = getDragAfterElement(tier, e.clientY)
+            const draggable = document.querySelector('.dragging')
+
+            if (afterElement == null) {
+                tier.appendChild(draggable)
+            } else {
+                tier.insertBefore(draggable, afterElement) 
+            }
+        })
     })
 }
 
