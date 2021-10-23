@@ -23,19 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tierRankingButton.addEventListener("click", () => {
             tierRankingButton.innerText = "Tier Ranking"
+
             hideTierRanking()
         })
     })
 
         // seed data to test tier-ranking feature
-        const moviesData = { "id": 1, "title": "Movies" }
-        const newCategory = new Category(moviesData)
-        const hungerGamesData = { "id": 1, "name": "The Hunger Games", "img": "https://images-na.ssl-images-amazon.com/images/I/71WSzS6zvCL.jpg", "rank": 0, "category": Category.all[0] }
-        const hungerGames = new Item(hungerGamesData)
-        const duneData = { "id": 2, "name": "Dune", "img": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg", "rank": 0, "category": Category.all[0] }
-        const dune = new Item(duneData)
-        const valerianData = { "id": 3, "name": "Valerian", "img": "https://upload.wikimedia.org/wikipedia/en/0/07/Valerian_and_the_City_of_a_Thousand_Planets.jpg", "rank": 0, "category": Category.all[0] }
-        const valerian = new Item(valerianData)
 
     // display the rest of the page 
     loadPage()
@@ -172,6 +165,18 @@ function findCategoryById(categories, key, value) {
         }
     }
     return null;
+}
+
+function findItemByName(items, key, value) {
+    // items = Item.all
+    // key = "name"
+    // value = item.innerText
+    for (var i = 0; i < items.length; i++) {
+        if (items[i][key] === value) {
+            return items[i]
+        }
+    } 
+    return null
 }
 
 function hideTierRanking() {
