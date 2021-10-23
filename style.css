@@ -27,6 +27,9 @@
     margin: 1rem;
     text-align: center;
     font-family: arial;
+
+    /* as child of .tier */
+    order: 2;
 }
 
 .item p {
