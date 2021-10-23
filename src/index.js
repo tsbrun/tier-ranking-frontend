@@ -256,32 +256,26 @@ function rankItems() {
 
         switch (item.parentElement.classList[1]) {
             case 's-tier':
-                // classInstance.rank = 6
                 data["item"]["rank"] = 6
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
             case 'a-tier':
-                // classInstance.rank = 5
                 data["item"]["rank"] = 5
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
             case 'b-tier':
-                // classInstance.rank = 4
                 data["item"]["rank"] = 4
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
             case 'c-tier':
-                // classInstance.rank = 3
                 data["item"]["rank"] = 3
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
             case 'd-tier':
-                // classInstance.rank = 2
                 data["item"]["rank"] = 2
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
             case 'f-tier':
-                // classInstance.rank = 1
                 data["item"]["rank"] = 1
                 patchDataToApi(`http://localhost:3000/api/v1/items/${id}`, data)
                 break;
