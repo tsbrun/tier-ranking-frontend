@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tierRankingButton.innerText = "Save Ranking"
 
-        // add items to tier-items container
         addItemsToTierRanking()
 
         const draggables = document.querySelectorAll('.draggable')
@@ -23,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTierEventListeners(tiers)
 
         tierRankingButton.addEventListener("click", () => {
+            tierRankingButton.innerText = "Tier Ranking"
             hideTierRanking()
-            loadPage()
         })
     })
 
