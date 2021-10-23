@@ -37,6 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     })
 
+    tiers.forEach(tier => {
+        tier.addEventListener('dragover', e => {
+            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
+            const afterElement = getDragAfterElement(tier, e.clientY)
+            const draggable = document.querySelector('.dragging')
+
+            if (afterElement == null) {
+                tier.appendChild(draggable)
+            } else {
+                tier.insertBefore(draggable, afterElement) 
+            }
+        })
+    })
+
     // display the rest of the page 
     hideEmptyUncategorized()
 
