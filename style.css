@@ -22,8 +22,9 @@
 
 .item {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    width: 100px;
+    height: 150px;
+    margin: 1rem;
     text-align: center;
     font-family: arial;
 }
@@ -35,13 +36,13 @@
 }
 
 .item-img { 
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 150px;
 }
 
 .item-img img {
-    width: 200px;
-    height: 300px;
+    width: 100px;
+    height: 150px;
 }
 
 /* tier-ranking styles */
