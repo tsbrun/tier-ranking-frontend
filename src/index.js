@@ -25,32 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tierRankingButton.innerText = "Tier Ranking"
 
             // change ranking of items based on tier
-            const items = document.querySelectorAll('div.item')
-            items.forEach(item => {
-                const classInstance = findItemByName(Item.all, "name", item.innerText)
-                switch (item.parentElement.classList[1]) {
-                    case 's-tier':
-                        classInstance.rank = 6
-                        break;
-                    case 'a-tier':
-                        classInstance.rank = 5
-                        break;
-                    case 'b-tier':
-                        classInstance.rank = 4
-                        break;
-                    case 'c-tier':
-                        classInstance.rank = 3
-                        break;
-                    case 'd-tier':
-                        classInstance.rank = 2
-                        break;
-                    case 'f-tier':
-                        classInstance.rank = 1
-                        break;
-                    default: 
-                        classInstance.rank = 0
-                }
-            })
+            rankItems()
 
             hideTierRanking()
         })
@@ -271,4 +246,33 @@ function getDragAfterElement(container, y) {
             return closest
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element
+}
+
+function rankItems() {
+    const items = document.querySelectorAll('div.item')
+    items.forEach(item => {
+        const classInstance = findItemByName(Item.all, "name", item.innerText)
+        switch (item.parentElement.classList[1]) {
+            case 's-tier':
+                classInstance.rank = 6
+                break;
+            case 'a-tier':
+                classInstance.rank = 5
+                break;
+            case 'b-tier':
+                classInstance.rank = 4
+                break;
+            case 'c-tier':
+                classInstance.rank = 3
+                break;
+            case 'd-tier':
+                classInstance.rank = 2
+                break;
+            case 'f-tier':
+                classInstance.rank = 1
+                break;
+            default: 
+                classInstance.rank = 0
+        }
+    })
 }
