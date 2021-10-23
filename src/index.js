@@ -56,62 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
 
-// tier-ranking functions
-
-function addItemsToTierRanking() {
-    const items = Item.all 
-
-    items.forEach(item => {
-        const draggableItem = item.renderItemDiv()
-        draggableItem.classList.add('draggable')
-
-        document.querySelector('div.tier-items').appendChild(draggableItem)
-    })
-}
-
-function setDraggableEventListeners(draggables) {
-    draggables.forEach(draggable => {
-        draggable.addEventListener('dragstart', () => {
-            draggable.classList.add('dragging')
-        })
-
-        draggable.addEventListener('dragend', () => {
-            draggable.classList.remove('dragging')
-        })
-    })
-}
-
-function setTierEventListeners(tiers) {
-    tiers.forEach(tier => {
-        tier.addEventListener('dragover', e => {
-            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
-            const afterElement = getDragAfterElement(tier, e.clientY)
-            const draggable = document.querySelector('.dragging')
-
-            if (afterElement == null) {
-                tier.appendChild(draggable)
-            } else {
-                tier.insertBefore(draggable, afterElement) 
-            }
-        })
-    })
-}
-
-function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging')]
-
-    return draggableElements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect()
-        const offset = y - box.top - box.height / 2
-
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: child }
-        } else {
-            return closest
-        }
-    }, { offset: Number.NEGATIVE_INFINITY }).element
-}
-
 // fetch, create, and display functions
 
 function fetchCategories() {
@@ -226,4 +170,60 @@ function hideTierRanking() {
 function showTierRanking() {
     const tierRanking = document.querySelector('div.tier-ranking')
     tierRanking.style.display = "block"
+}
+
+// tier-ranking functions
+
+function addItemsToTierRanking() {
+    const items = Item.all 
+
+    items.forEach(item => {
+        const draggableItem = item.renderItemDiv()
+        draggableItem.classList.add('draggable')
+
+        document.querySelector('div.tier-items').appendChild(draggableItem)
+    })
+}
+
+function setDraggableEventListeners(draggables) {
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => {
+            draggable.classList.add('dragging')
+        })
+
+        draggable.addEventListener('dragend', () => {
+            draggable.classList.remove('dragging')
+        })
+    })
+}
+
+function setTierEventListeners(tiers) {
+    tiers.forEach(tier => {
+        tier.addEventListener('dragover', e => {
+            e.preventDefault() // allow item to be dropped into the tier container (not allowed by default)
+            const afterElement = getDragAfterElement(tier, e.clientY)
+            const draggable = document.querySelector('.dragging')
+
+            if (afterElement == null) {
+                tier.appendChild(draggable)
+            } else {
+                tier.insertBefore(draggable, afterElement) 
+            }
+        })
+    })
+}
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging')]
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect()
+        const offset = y - box.top - box.height / 2
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child }
+        } else {
+            return closest
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element
 }
