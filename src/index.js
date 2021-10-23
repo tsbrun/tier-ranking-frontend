@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function addItemsToTierRanking() {
     const items = Item.all 
     items.forEach(item => {
-        document.querySelector('div.tier-items').appendChild(item.renderItemDiv())
+        const draggableItem = item.renderItemDiv()
+        draggableItem.classList.add('draggable')
+        document.querySelector('div.tier-items').appendChild(draggableItem)
     })
 }
 
