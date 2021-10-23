@@ -94,3 +94,12 @@
 .f-tier {
     background-color: #40ff00;
 }
+
+.tier-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #d7d9db;
+    padding: 2rem;
+    margin-top: 1rem;
+}
