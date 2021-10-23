@@ -74,27 +74,27 @@
     font-size: 18px;
 }
 
-.s-tier {
+.tier-heading.s-tier {
     background-color: #ff4000;
 }
 
-.a-tier {
+.tier-heading.a-tier {
     background-color: #ff8000;
 }
 
-.b-tier {
+.tier-heading.b-tier {
     background-color: #ffc61a;
 }
 
-.c-tier {
+.tier-heading.c-tier {
     background-color: #ffff00;
 }
 
-.d-tier {
+.tier-heading.d-tier {
     background-color: #bfff00;
 }
 
-.f-tier {
+.tier-heading.f-tier {
     background-color: #40ff00;
 }
 
