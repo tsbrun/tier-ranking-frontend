@@ -20,10 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const valerianData = { "id": 3, "name": "Valerian", "img": "https://upload.wikimedia.org/wikipedia/en/0/07/Valerian_and_the_City_of_a_Thousand_Planets.jpg", "rank": 0, "category": Category.all[0] }
         const valerian = new Item(valerianData)
 
-        document.querySelector('.main').appendChild(Category.all[0].renderCategoryDiv())
-        document.querySelector(`div[data-category=${hungerGames.category.title}] > div.items`).appendChild(hungerGames.renderItemDiv())
-        document.querySelector(`div[data-category=${dune.category.title}] > div.items`).appendChild(dune.renderItemDiv())
-        document.querySelector(`div[data-category=${valerian.category.title}] > div.items`).appendChild(valerian.renderItemDiv())
+        // add items to tier-items container
+        addItemsToTierRanking()
 
     // display the rest of the page 
     hideEmptyUncategorized()
@@ -51,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const createItemForm = document.querySelector("#create-item-form")
     createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
+
+// add items to tier-items container
+function addItemsToTierRanking() {
+    const items = Item.all 
+    items.forEach(item => {
+        document.querySelector('div.tier-items').appendChild(item.renderItemDiv())
+    })
+}
+
+// fetch, create, and display functions
 
 function fetchCategories() {
     return fetch(`${api_url}/categories`)
