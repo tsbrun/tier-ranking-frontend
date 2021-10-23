@@ -251,28 +251,62 @@ function getDragAfterElement(container, y) {
 function rankItems() {
     const items = document.querySelectorAll('div.item')
     items.forEach(item => {
-        const classInstance = findItemByName(Item.all, "name", item.innerText)
+        const data = formatItemForApi(item)
         switch (item.parentElement.classList[1]) {
             case 's-tier':
-                classInstance.rank = 6
+                // classInstance.rank = 6
+                data["item"]["rank"] = 6
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'a-tier':
-                classInstance.rank = 5
+                // classInstance.rank = 5
+                data["item"]["rank"] = 5
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'b-tier':
-                classInstance.rank = 4
+                // classInstance.rank = 4
+                data["item"]["rank"] = 4
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'c-tier':
-                classInstance.rank = 3
+                // classInstance.rank = 3
+                data["item"]["rank"] = 3
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'd-tier':
-                classInstance.rank = 2
+                // classInstance.rank = 2
+                data["item"]["rank"] = 2
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             case 'f-tier':
-                classInstance.rank = 1
+                // classInstance.rank = 1
+                data["item"]["rank"] = 1
+                patchDataToApi("http://localhost:3000/api/v1/items", data)
                 break;
             default: 
-                classInstance.rank = 0
+                console.log("Rank remains unchanged...")
         }
+    })
+}
+
+function formatItemForApi(item) {
+    let data = { "item": {} }
+
+    data["item"]["name"] = item.get("name")
+    data["item"]["img"] = item.get("img")
+    data["item"]["rank"] = 0
+    data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(item.get("category")))
+
+    return data
+}
+
+function patchDataToApi(route, data) { 
+    fetch(route, {
+        method: 'PATCH', 
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     })
 }
