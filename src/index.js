@@ -6,8 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // hide tier-ranking div until tier-ranking button is clicked
     hideTierRanking()
 
-    document.querySelector('#tier-ranking-button').addEventListener("click", () => {
+    const tierRankingButton = document.querySelector('#tier-ranking-button')
+
+    tierRankingButton.addEventListener("click", () => {
         showTierRanking()
+
+        tierRankingButton.innerText = "Save Ranking"
 
         // add items to tier-items container
         addItemsToTierRanking()
@@ -17,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tiers = document.querySelectorAll('.tier')
         setTierEventListeners(tiers)
+
+        tierRankingButton.addEventListener("click", () => {
+            hideTierRanking()
+            loadPage()
+        })
     })
 
         // seed data to test tier-ranking feature
@@ -30,6 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const valerian = new Item(valerianData)
 
     // display the rest of the page 
+    loadPage()
+
+    // post new category data to server
+    const createCategoryForm = document.querySelector("#create-category-form")
+    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
+
+    // post new item data to server
+    const createItemForm = document.querySelector("#create-item-form")
+    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
+})
+
+function loadPage() {
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -46,15 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayItems(items)
     })
     .catch(err => console.log(err))
-
-    // post new category data to server
-    const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
-
-    // post new item data to server
-    const createItemForm = document.querySelector("#create-item-form")
-    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
-})
+}
 
 // fetch, create, and display functions
 
