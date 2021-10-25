@@ -32,23 +32,28 @@ class Item {
         let starDiv = document.createElement('div')
         starDiv.classList.add('star-div')
 
-        var times = 6
-        for(var i = 0; i < times; i++) {
+        var checked = this.rank
+        for(var i = 0; i < checked; i++) {
             let star = document.createElement('span')
-            star.classList.add('fa', 'fa-star') 
+            star.classList.add('fa', 'fa-star', 'checked') 
             starDiv.appendChild(star)
         }
+
+        var unChecked = 6 - this.rank 
+        for(var i = 0; i < unChecked; i++) {
+            let star = document.createElement('span')
+            star.classList.add('fa', 'fa-star')
+            starDiv.appendChild(star)
+        }
+
+        // var times = this.rank -> (create spans with .checked class)
+        // var times = 6 (total # of stars) - this.rank -> (create spans w/o .checked class)
 
         itemDiv.appendChild(starDiv)
 
         return itemDiv
     }
 
-    displayRank() {
-        // iterate over each icon in starsDiv
-        // var = parseInt(rank)
-        // each iteration -> add .checked class to icon span
-    }
 }
 
 Item.all = []
