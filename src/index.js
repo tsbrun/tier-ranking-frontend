@@ -7,20 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hideEmptyUncategorized()
     hideTierRanking()
 
-    // fetchCategories()
-    // .then(categories => {
-    //     displayCategories(categories)
-    //     appendCategoriesToForm()
-    // })
-    // .catch(err => console.log(err))
-
-    // showUncategorized()
-
-    // fetchItems()
-    // .then(items => {
-    //     displayItems(items)
-    // })
-    // .catch(err => console.log(err))
+    // loadContent()
     
     // hide tier-ranking div until tier-ranking button is clicked
     const tierRankingButton = document.querySelector('#tier-ranking-button')
@@ -43,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // change ranking of items based on tier
             rankItems()
+            loadContent()
             hideTierRanking()
         })
     })
@@ -55,6 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const createItemForm = document.querySelector("#create-item-form")
     createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
+
+function loadContent() {
+    fetchCategories()
+    .then(categories => {
+        displayCategories(categories)
+        appendCategoriesToForm()
+    })
+    .catch(err => console.log(err))
+
+    showUncategorized()
+
+    fetchItems()
+    .then(items => {
+        displayItems(items)
+    })
+    .catch(err => console.log(err))
+}
 
 // fetch, create, and display functions
 
