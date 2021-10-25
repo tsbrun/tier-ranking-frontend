@@ -3,9 +3,13 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // hide tier-ranking div until tier-ranking button is clicked
+    // display categories and items
+    hideEmptyUncategorized()
     hideTierRanking()
 
+    // loadContent()
+    
+    // hide tier-ranking div until tier-ranking button is clicked
     const tierRankingButton = document.querySelector('#tier-ranking-button')
 
     tierRankingButton.addEventListener("click", () => {
@@ -26,13 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // change ranking of items based on tier
             rankItems()
-
             hideTierRanking()
         })
+        loadContent()
     })
-
-    // display the rest of the page 
-    loadPage()
 
     // post new category data to server
     const createCategoryForm = document.querySelector("#create-category-form")
@@ -43,9 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createItemForm.addEventListener("submit", (e) => createItemHandler(e))
 })
 
-function loadPage() {
-    hideEmptyUncategorized()
-
+function loadContent() {
     fetchCategories()
     .then(categories => {
         displayCategories(categories)
@@ -180,6 +179,8 @@ function findItemByName(items, key, value) {
     return null
 }
 
+// tier-ranking functions
+
 function hideTierRanking() {
     const tierRanking = document.querySelector('div.tier-ranking')
     tierRanking.style.display = "none"
@@ -189,8 +190,6 @@ function showTierRanking() {
     const tierRanking = document.querySelector('div.tier-ranking')
     tierRanking.style.display = "block"
 }
-
-// tier-ranking functions
 
 function addItemsToTierRanking() {
     const items = Item.all 
