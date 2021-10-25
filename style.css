@@ -106,3 +106,8 @@
     padding: 2rem;
     margin-top: 1rem;
 }
+
+/* star rank styles */
+.checked {
+    color: orange;
+}
