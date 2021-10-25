@@ -294,10 +294,3 @@ function patchDataToApi(route, data) {
         body: JSON.stringify(data)
     })
 }
-
-function displayRank() {
-    // get each item on page
-    // iterate over each icon in starsDiv
-    // var = parseInt(rank)
-    // each iteration -> add .checked class to icon span
-}
