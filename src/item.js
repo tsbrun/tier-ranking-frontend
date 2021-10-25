@@ -43,6 +43,12 @@ class Item {
 
         return itemDiv
     }
+
+    displayRank() {
+        // iterate over each icon in starsDiv
+        // var = parseInt(rank)
+        // each iteration -> add .checked class to icon span
+    }
 }
 
 Item.all = []
