@@ -32,18 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // display the rest of the page 
-    loadPage()
-
-    // post new category data to server
-    const createCategoryForm = document.querySelector("#create-category-form")
-    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
-
-    // post new item data to server
-    const createItemForm = document.querySelector("#create-item-form")
-    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
-})
-
-function loadPage() {
     hideEmptyUncategorized()
 
     fetchCategories()
@@ -60,7 +48,15 @@ function loadPage() {
         displayItems(items)
     })
     .catch(err => console.log(err))
-}
+
+    // post new category data to server
+    const createCategoryForm = document.querySelector("#create-category-form")
+    createCategoryForm.addEventListener("submit", (e) => createCategoryHandler(e))
+
+    // post new item data to server
+    const createItemForm = document.querySelector("#create-item-form")
+    createItemForm.addEventListener("submit", (e) => createItemHandler(e))
+})
 
 // fetch, create, and display functions
 
