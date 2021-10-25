@@ -1,4 +1,8 @@
-# TierRanking - JS App
+# README
+
+## TierRanking - JS App
+
+### How does it work?
 
 1. Create a category. 
 2. Add items with names and images. 
