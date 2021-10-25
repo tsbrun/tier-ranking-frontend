@@ -30,7 +30,7 @@ class Item {
 
         // display star ranking
         let starDiv = document.createElement('div')
-        starDiv.classList.add('star-div')
+        starDiv.classList.add('stars')
 
         var checked = this.rank
         for(var i = 0; i < checked; i++) {
