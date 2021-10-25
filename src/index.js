@@ -3,9 +3,26 @@
 // const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // hide tier-ranking div until tier-ranking button is clicked
+    // display categories and items
+    hideEmptyUncategorized()
     hideTierRanking()
 
+    // fetchCategories()
+    // .then(categories => {
+    //     displayCategories(categories)
+    //     appendCategoriesToForm()
+    // })
+    // .catch(err => console.log(err))
+
+    // showUncategorized()
+
+    // fetchItems()
+    // .then(items => {
+    //     displayItems(items)
+    // })
+    // .catch(err => console.log(err))
+    
+    // hide tier-ranking div until tier-ranking button is clicked
     const tierRankingButton = document.querySelector('#tier-ranking-button')
 
     tierRankingButton.addEventListener("click", () => {
@@ -26,28 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // change ranking of items based on tier
             rankItems()
-
             hideTierRanking()
         })
     })
-
-    // display the rest of the page 
-    hideEmptyUncategorized()
-
-    fetchCategories()
-    .then(categories => {
-        displayCategories(categories)
-        appendCategoriesToForm()
-    })
-    .catch(err => console.log(err))
-
-    showUncategorized()
-
-    fetchItems()
-    .then(items => {
-        displayItems(items)
-    })
-    .catch(err => console.log(err))
 
     // post new category data to server
     const createCategoryForm = document.querySelector("#create-category-form")
@@ -176,6 +174,8 @@ function findItemByName(items, key, value) {
     return null
 }
 
+// tier-ranking functions
+
 function hideTierRanking() {
     const tierRanking = document.querySelector('div.tier-ranking')
     tierRanking.style.display = "none"
@@ -185,8 +185,6 @@ function showTierRanking() {
     const tierRanking = document.querySelector('div.tier-ranking')
     tierRanking.style.display = "block"
 }
-
-// tier-ranking functions
 
 function addItemsToTierRanking() {
     const items = Item.all 
