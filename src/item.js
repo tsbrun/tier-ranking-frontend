@@ -31,11 +31,11 @@ class Item {
         // display star ranking
         let starDiv = document.createElement('div')
         starDiv.classList.add('star-div')
-        let star = document.createElement('span')
-        star.classList.add('fa', 'fa-star')
 
         var times = 6
         for(var i = 0; i < times; i++) {
+            let star = document.createElement('span')
+            star.classList.add('fa', 'fa-star') 
             starDiv.appendChild(star)
         }
 
