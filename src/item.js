@@ -28,6 +28,19 @@ class Item {
         name.appendChild(text)
         itemDiv.appendChild(name)
 
+        // display star ranking
+        let starDiv = document.createElement('div')
+        starDiv.classList('star-div')
+        let star = document.createElement('span')
+        star.classList.add('fa', 'fa-star')
+
+        var times = 6
+        for(var i = 0; i < times; i++) {
+            starDiv.appendChild(star)
+        }
+
+        itemDiv.appendChild(starDiv)
+
         return itemDiv
     }
 }
