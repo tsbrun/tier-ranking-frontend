@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hideEmptyUncategorized()
     hideTierRanking()
 
-    // loadContent()
+    loadContent()
     
     // hide tier-ranking div until tier-ranking button is clicked
     const tierRankingButton = document.querySelector('#tier-ranking-button')
@@ -45,20 +45,146 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function loadContent() {
-    fetchCategories()
-    .then(categories => {
-        displayCategories(categories)
-        appendCategoriesToForm()
-    })
-    .catch(err => console.log(err))
+    // fetchCategories()
+    // .then(categories => {
+    //     displayCategories(categories)
+    //     appendCategoriesToForm()
+    // })
+    // .catch(err => console.log(err))
 
-    showUncategorized()
+    // showUncategorized()
 
-    fetchItems()
-    .then(items => {
-        displayItems(items)
+    // fetchItems()
+    // .then(items => {
+    //     displayItems(items)
+    // })
+    // .catch(err => console.log(err))
+
+    // hardcode data to demonstrate app functionality -> fetch requests not working for some reason
+    const categoriesData = [
+        {
+            "id": 1,
+            "title": "Books"
+          },
+          {
+            "id": 2,
+            "title": "Movies"
+          },
+          {
+            "id": 3,
+            "title": "Fruit"
+          },
+          {
+            "id": 4,
+            "title": "Animals"
+          }]
+
+    categoriesData.forEach(category => {
+        const newCategory = new Category(category)
+        document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
     })
-    .catch(err => console.log(err))
+
+    const itemsData = [
+        {
+            "id": 3,
+            "name": "Dune",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/41rgl-8wDsL._SX277_BO1,204,203,200_.jpg",
+            "rank": 0,
+            "category": {
+              "id": 1,
+              "title": "Books"
+            }
+          },
+          {
+            "id": 4,
+            "name": "The Hunger Games",
+            "img": "https://m.media-amazon.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_FMjpg_UX1000_.jpg",
+            "rank": 0,
+            "category": {
+              "id": 2,
+              "title": "Movies"
+            }
+          },
+          {
+            "id": 5,
+            "name": "Avengers: Endgame",
+            "img": "https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810",
+            "rank": 0,
+            "category": {
+              "id": 2,
+              "title": "Movies"
+            }
+          },
+          {
+            "id": 6,
+            "name": "Alita: Battle Angel",
+            "img": "https://m.media-amazon.com/images/M/MV5BMTQzYWYwYjctY2JhZS00NTYzLTllM2UtZWY5ZTk0NmYwYzIyXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
+            "rank": 0,
+            "category": {
+              "id": 2,
+              "title": "Movies"
+            }
+          },
+          {
+            "id": 7,
+            "name": "Contigo",
+            "img": "https://m.media-amazon.com/images/I/61VCQaerr9L._AC_SS450_.jpg",
+            "rank": 0,
+            "category": null
+          },
+          {
+            "id": 8,
+            "name": "black and white composition book",
+            "img": "https://images.squarespace-cdn.com/content/v1/53f6249be4b0fa46860f073c/1591741383305-2SP0KIKOVOBIK4XTXQ4D/composition.jpg?format=300w",
+            "rank": 0,
+            "category": null
+          },
+          {
+            "id": 9,
+            "name": "Island Mango",
+            "img": "https://b3h2.scene7.com/is/image/BedBathandBeyond/300626668493769p?$690$&wid=690&hei=690",
+            "rank": 0,
+            "category": null
+          },
+          {
+            "id": 13,
+            "name": "Golden Retriever Puppy",
+            "img": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2020/07/09151754/Golden-Retriever-puppy-standing-outdoors-500x486.jpg",
+            "rank": 0,
+            "category": {
+              "id": 4,
+              "title": "Animals"
+            }
+          },
+          {
+            "id": 1,
+            "name": "The Metamorphosis",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/51OoETNYFCL.jpg",
+            "rank": 6,
+            "category": {
+              "id": 1,
+              "title": "Books"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Pride and Prejudice",
+            "img": "http://prodimage.images-bn.com/pimages/9781499369748_p0_v3_s1200x630.jpg",
+            "rank": 6,
+            "category": {
+              "id": 1,
+              "title": "Books"
+            }
+        }]
+    
+    itemsData.forEach(item => {
+        const newItem = new Item(item)
+        if (newItem.category == null) {
+            document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
+        } else {
+            document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
+        }
+    })
 }
 
 // fetch, create, and display functions
