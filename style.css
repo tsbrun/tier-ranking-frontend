@@ -14,10 +14,15 @@
 
 /* category and item styles */
 
+.category {
+    padding: 2rem;
+}
+
 .items {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
 }
 
 .item {
