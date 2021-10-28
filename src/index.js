@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hideTierRanking()
 
     loadContent()
+    appendCategoriesToForm()
     
     // hide tier-ranking div until tier-ranking button is clicked
     const tierRankingButton = document.querySelector('#tier-ranking-button')
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideTierRanking()
         })
         loadContent()
+        appendCategoriesToForm()
     })
 
     // post new category data to server
@@ -45,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function loadContent() {
+    // uncomment this and api_url to demonstrate that fetch requests are being made to api
+
     // fetchCategories()
     // .then(categories => {
     //     displayCategories(categories)
@@ -73,11 +77,8 @@ function loadContent() {
           {
             "id": 3,
             "title": "Fruit"
-          },
-          {
-            "id": 4,
-            "title": "Animals"
-          }]
+        }
+    ]
 
     categoriesData.forEach(category => {
         const newCategory = new Category(category)
@@ -86,6 +87,26 @@ function loadContent() {
 
     const itemsData = [
         {
+            "id": 1,
+            "name": "The Metamorphosis",
+            "img": "https://images-na.ssl-images-amazon.com/images/I/51OoETNYFCL.jpg",
+            "rank": 0,
+            "category": {
+              "id": 1,
+              "title": "Books"
+            }
+          },
+          {
+            "id": 2,
+            "name": "Pride and Prejudice",
+            "img": "http://prodimage.images-bn.com/pimages/9781499369748_p0_v3_s1200x630.jpg",
+            "rank": 0,
+            "category": {
+              "id": 1,
+              "title": "Books"
+            }
+          },
+          {
             "id": 3,
             "name": "Dune",
             "img": "https://images-na.ssl-images-amazon.com/images/I/41rgl-8wDsL._SX277_BO1,204,203,200_.jpg",
@@ -145,37 +166,8 @@ function loadContent() {
             "img": "https://b3h2.scene7.com/is/image/BedBathandBeyond/300626668493769p?$690$&wid=690&hei=690",
             "rank": 0,
             "category": null
-          },
-          {
-            "id": 13,
-            "name": "Golden Retriever Puppy",
-            "img": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2020/07/09151754/Golden-Retriever-puppy-standing-outdoors-500x486.jpg",
-            "rank": 0,
-            "category": {
-              "id": 4,
-              "title": "Animals"
-            }
-          },
-          {
-            "id": 1,
-            "name": "The Metamorphosis",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/51OoETNYFCL.jpg",
-            "rank": 6,
-            "category": {
-              "id": 1,
-              "title": "Books"
-            }
-          },
-          {
-            "id": 2,
-            "name": "Pride and Prejudice",
-            "img": "http://prodimage.images-bn.com/pimages/9781499369748_p0_v3_s1200x630.jpg",
-            "rank": 6,
-            "category": {
-              "id": 1,
-              "title": "Books"
-            }
-        }]
+          }
+    ]
     
     itemsData.forEach(item => {
         const newItem = new Item(item)
@@ -202,7 +194,7 @@ function displayCategories(categories) {
     })
 }
 
-function appendCategoriesToForm(categories) {
+function appendCategoriesToForm() {
     // add category options to create-item-form
     Category.all.forEach(category => {
         const option = document.createElement('option')
