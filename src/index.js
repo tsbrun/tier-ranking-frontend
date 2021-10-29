@@ -1,10 +1,10 @@
 // JS MANTRA: When some event happens, I want to make what kind of fetch and then manipulate the DOM in what way?
 
-// const api_url = 'http://localhost:3000/api/v1' 
+const api_url = 'http://localhost:3000/api/v1' 
 
 document.addEventListener('DOMContentLoaded', () => {
     // display categories and items
-    hideEmptyUncategorized()
+    // hideEmptyUncategorized()
     hideTierRanking()
 
     loadContent()
@@ -49,134 +49,135 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadContent() {
     // uncomment this and api_url to demonstrate that fetch requests are being made to api
 
-    // fetchCategories()
-    // .then(categories => {
-    //     displayCategories(categories)
-    //     appendCategoriesToForm()
-    // })
-    // .catch(err => console.log(err))
+   fetchCategories()
+    .then(categories => {
+        displayCategories(categories)
+        appendCategoriesToForm()
+        // console.log(categories)
+    })
+    .catch(err => console.log(err))
 
-    // showUncategorized()
+    showUncategorized()
 
-    // fetchItems()
-    // .then(items => {
-    //     displayItems(items)
-    // })
-    // .catch(err => console.log(err))
+    fetchItems()
+    .then(items => {
+        displayItems(items)
+    })
+    .catch(err => console.log(err))
 
     // hardcode data to demonstrate app functionality -> fetch requests not working for some reason
-    const categoriesData = [
-        {
-            "id": 1,
-            "title": "Books"
-          },
-          {
-            "id": 2,
-            "title": "Movies"
-          },
-          {
-            "id": 3,
-            "title": "Fruit"
-        }
-    ]
+    // const categoriesData = [
+    //     {
+    //         "id": 1,
+    //         "title": "Books"
+    //       },
+    //       {
+    //         "id": 2,
+    //         "title": "Movies"
+    //       },
+    //       {
+    //         "id": 3,
+    //         "title": "Fruit"
+    //     }
+    // ]
 
-    categoriesData.forEach(category => {
-        const newCategory = new Category(category)
-        document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
-    })
+    // categoriesData.forEach(category => {
+    //     const newCategory = new Category(category)
+    //     document.querySelector('.main').appendChild(newCategory.renderCategoryDiv())
+    // })
 
-    const itemsData = [
-        {
-            "id": 1,
-            "name": "The Metamorphosis",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/51OoETNYFCL.jpg",
-            "rank": 0,
-            "category": {
-              "id": 1,
-              "title": "Books"
-            }
-          },
-          {
-            "id": 2,
-            "name": "Pride and Prejudice",
-            "img": "http://prodimage.images-bn.com/pimages/9781499369748_p0_v3_s1200x630.jpg",
-            "rank": 0,
-            "category": {
-              "id": 1,
-              "title": "Books"
-            }
-          },
-          {
-            "id": 3,
-            "name": "Dune",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/41rgl-8wDsL._SX277_BO1,204,203,200_.jpg",
-            "rank": 0,
-            "category": {
-              "id": 1,
-              "title": "Books"
-            }
-          },
-          {
-            "id": 4,
-            "name": "The Hunger Games",
-            "img": "https://m.media-amazon.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_FMjpg_UX1000_.jpg",
-            "rank": 0,
-            "category": {
-              "id": 2,
-              "title": "Movies"
-            }
-          },
-          {
-            "id": 5,
-            "name": "Avengers: Endgame",
-            "img": "https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810",
-            "rank": 0,
-            "category": {
-              "id": 2,
-              "title": "Movies"
-            }
-          },
-          {
-            "id": 6,
-            "name": "Alita: Battle Angel",
-            "img": "https://m.media-amazon.com/images/M/MV5BMTQzYWYwYjctY2JhZS00NTYzLTllM2UtZWY5ZTk0NmYwYzIyXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
-            "rank": 0,
-            "category": {
-              "id": 2,
-              "title": "Movies"
-            }
-          },
-          {
-            "id": 7,
-            "name": "Contigo",
-            "img": "https://m.media-amazon.com/images/I/61VCQaerr9L._AC_SS450_.jpg",
-            "rank": 0,
-            "category": null
-          },
-          {
-            "id": 8,
-            "name": "black and white composition book",
-            "img": "https://images.squarespace-cdn.com/content/v1/53f6249be4b0fa46860f073c/1591741383305-2SP0KIKOVOBIK4XTXQ4D/composition.jpg?format=300w",
-            "rank": 0,
-            "category": null
-          },
-          {
-            "id": 9,
-            "name": "Island Mango",
-            "img": "https://b3h2.scene7.com/is/image/BedBathandBeyond/300626668493769p?$690$&wid=690&hei=690",
-            "rank": 0,
-            "category": null
-          }
-    ]
+    // const itemsData = [
+    //     {
+    //         "id": 1,
+    //         "name": "The Metamorphosis",
+    //         "img": "https://images-na.ssl-images-amazon.com/images/I/51OoETNYFCL.jpg",
+    //         "rank": 0,
+    //         "category": {
+    //           "id": 1,
+    //           "title": "Books"
+    //         }
+    //       },
+    //       {
+    //         "id": 2,
+    //         "name": "Pride and Prejudice",
+    //         "img": "http://prodimage.images-bn.com/pimages/9781499369748_p0_v3_s1200x630.jpg",
+    //         "rank": 0,
+    //         "category": {
+    //           "id": 1,
+    //           "title": "Books"
+    //         }
+    //       },
+    //       {
+    //         "id": 3,
+    //         "name": "Dune",
+    //         "img": "https://images-na.ssl-images-amazon.com/images/I/41rgl-8wDsL._SX277_BO1,204,203,200_.jpg",
+    //         "rank": 0,
+    //         "category": {
+    //           "id": 1,
+    //           "title": "Books"
+    //         }
+    //       },
+    //       {
+    //         "id": 4,
+    //         "name": "The Hunger Games",
+    //         "img": "https://m.media-amazon.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_FMjpg_UX1000_.jpg",
+    //         "rank": 0,
+    //         "category": {
+    //           "id": 2,
+    //           "title": "Movies"
+    //         }
+    //       },
+    //       {
+    //         "id": 5,
+    //         "name": "Avengers: Endgame",
+    //         "img": "https://lumiere-a.akamaihd.net/v1/images/p_avengersendgame_19751_e14a0104.jpeg?region=0%2C0%2C540%2C810",
+    //         "rank": 0,
+    //         "category": {
+    //           "id": 2,
+    //           "title": "Movies"
+    //         }
+    //       },
+        //   {
+        //     "id": 6,
+        //     "name": "Alita: Battle Angel",
+        //     "img": "https://m.media-amazon.com/images/M/MV5BMTQzYWYwYjctY2JhZS00NTYzLTllM2UtZWY5ZTk0NmYwYzIyXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
+        //     "rank": 0,
+        //     "category": {
+        //       "id": 2,
+        //       "title": "Movies"
+        //     }
+        //   },
+    //       {
+    //         "id": 7,
+    //         "name": "Contigo",
+    //         "img": "https://m.media-amazon.com/images/I/61VCQaerr9L._AC_SS450_.jpg",
+    //         "rank": 0,
+    //         "category": null
+    //       },
+    //       {
+    //         "id": 8,
+    //         "name": "black and white composition book",
+    //         "img": "https://images.squarespace-cdn.com/content/v1/53f6249be4b0fa46860f073c/1591741383305-2SP0KIKOVOBIK4XTXQ4D/composition.jpg?format=300w",
+    //         "rank": 0,
+    //         "category": null
+    //       },
+    //       {
+    //         "id": 9,
+    //         "name": "Island Mango",
+    //         "img": "https://b3h2.scene7.com/is/image/BedBathandBeyond/300626668493769p?$690$&wid=690&hei=690",
+    //         "rank": 0,
+    //         "category": null
+    //       }
+    // ]
     
-    itemsData.forEach(item => {
-        const newItem = new Item(item)
-        if (newItem.category == null) {
-            document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
-        } else {
-            document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
-        }
-    })
+    // itemsData.forEach(item => {
+    //     const newItem = new Item(item)
+    //     if (newItem.category == null) {
+    //         document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
+    //     } else {
+    //         document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
+    //     }
+    // })
 }
 
 // fetch, create, and display functions
@@ -259,12 +260,12 @@ function createCategoryHandler(e) {
 function createItemHandler(e) {
     e.preventDefault()
 
-    const itemFormData = new FormData(e.target)
+    // const itemFormData = new FormData(e.target)
     let data = { "item": {} }
 
-    data["item"]["name"] = itemFormData.get("name")
-    data["item"]["img"] = itemFormData.get("img")
-    data["item"]["category"] = findCategoryById(Category.all, "id", parseInt(itemFormData.get("category")))
+    data["item"]["name"] = document.querySelector('#input-name').value
+    data["item"]["img"] = document.querySelector('#input-img').value
+    data["item"]["category"] = findCategoryById(Category.all, "id", document.querySelector('select#category').options["selectedIndex"]) // select category value
 
     fetch(`http://localhost:3000/api/v1/items`, {
         method: 'POST', 
@@ -273,6 +274,16 @@ function createItemHandler(e) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
+    }).then(resp => resp.json())
+    .then(json => {
+        const newItem = new Item(json.data) 
+        // select data object nested within json returned by api (just passing json before
+        // which meant that newItem was created but all its properties were undefined)
+        if (newItem.category == null) {
+            document.querySelector('div[data-category=null] > div.items').appendChild(newItem.renderItemDiv())
+        } else {
+            document.querySelector(`div[data-category=${newItem.category.title}] > div.items`).appendChild(newItem.renderItemDiv())
+        }
     })
 }
 
